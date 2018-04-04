@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
 
 /**
  * HomeController
@@ -18,7 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
 @RestController
 public class HomeController {
 
-    @RequestMapping(value = "/", method = {GET, HEAD})
+    @RequestMapping(value = "/", method = GET, produces = "application/json")
     public Map home() {
         Map<String, String> map = new HashMap<>(1);
         map.put("msg", "hello, world");

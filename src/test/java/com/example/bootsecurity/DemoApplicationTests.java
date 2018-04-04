@@ -3,6 +3,7 @@ package com.example.bootsecurity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -21,13 +22,21 @@ public class DemoApplicationTests {
     }
 
     @Test
-    public void testHomeController() throws Exception {
+    public void test200AndCorrectJsonContent() throws Exception {
         HomeController homeController = new HomeController();
         MockMvc mockMvc = standaloneSetup(homeController).build();
         mockMvc.perform(get("/"))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(content().string("hello, world"));
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"msg\":\"hello, world\"}"));
     }
 
+    @Test
+    public void test406Error() throws Exception {
+        HomeController homeController = new HomeController();
+        MockMvc mockMvc = standaloneSetup(homeController).build();
+        mockMvc.perform(get("/").accept(MediaType.APPLICATION_XML))
+                .andDo(print())
+                .andExpect(status().isNotAcceptable());
+    }
 }
