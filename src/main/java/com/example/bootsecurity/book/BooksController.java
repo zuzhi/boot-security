@@ -1,12 +1,13 @@
-package com.example.bootsecurity;
+package com.example.bootsecurity.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -21,22 +22,33 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("/books")
 public class BooksController {
 
-    private BookRepository bookRepository;
+    private BookService bookService;
 
     @Autowired
-    public BooksController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BooksController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @RequestMapping(method = GET)
-    public @ResponseBody
-    List<Book> findAll() {
-        return bookRepository.findAll();
+    public Page<Book> findAll(@RequestParam(defaultValue = "1") int page,
+                              @RequestParam(defaultValue = "10") int size) {
+        Pageable pageRequest = PageRequest.of(page - 1, size);
+        return bookService.findAll(pageRequest);
     }
 
-    @RequestMapping(method = POST)
-    public @ResponseBody
-    Book saveBook(@RequestBody Book book) {
-        return bookRepository.save(book);
+    @RequestMapping(method = GET, value = "/{bookId}")
+    public Book findById(@PathVariable Long bookId) {
+        return bookService.findById(bookId).orElseThrow(
+                () -> new BookNotFoundException("Book [" + bookId + "] not found"));
+    }
+
+    @RequestMapping(method = POST, consumes = "application/json")
+    public ResponseEntity<Book> saveBook(@RequestBody Book book,
+                                         UriComponentsBuilder ucb) {
+        bookService.save(book);
+
+        UriComponents uriComponents = ucb.path("/books/{id}").buildAndExpand(book.getId());
+
+        return ResponseEntity.created(uriComponents.toUri()).body(book);
     }
 }
