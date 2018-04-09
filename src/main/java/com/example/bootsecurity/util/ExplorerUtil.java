@@ -1,4 +1,4 @@
-package com.example.bootsecurity;
+package com.example.bootsecurity.util;
 
 /**
  * Util class for exploring some techniques
