@@ -42,15 +42,16 @@ public class BookService {
 
     Book update(Book book, Long bookId) {
         Preconditions.checkNotNull(book);
-        // TODO NPE if id does not supplied
+        // TODO NPE if bookId does not supplied
         Preconditions.checkState(book.getId().equals(bookId));
         Preconditions.checkNotNull(bookRepository.findById(bookId));
         return bookRepository.save(book);
     }
 
     Book update(Map<String, String> updates, Long bookId) {
-        final Book book = findById(bookId).orElseThrow(
-                () -> new BookNotFoundException("Book [" + bookId + "] not found"));
+        final Book book = findById(bookId)
+                .orElseThrow(() -> new BookNotFoundException("Book [" + bookId + "] not found"));
+
         updates.keySet()
                 .forEach(key -> {
                     switch (key) {
