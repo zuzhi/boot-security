@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
@@ -39,8 +40,7 @@ public class BooksController {
 
     @RequestMapping(method = GET, value = "/{bookId}", produces = "application/json")
     public Book findById(@PathVariable Long bookId) {
-        return bookService.findById(bookId)
-                .orElseThrow(() -> new BookNotFoundException("Book [" + bookId + "] not found"));
+        return bookService.findById(bookId);
     }
 
     @RequestMapping(method = POST, consumes = "application/json")
@@ -61,8 +61,15 @@ public class BooksController {
     }
 
     @RequestMapping(method = PATCH, value = "/{bookId}", consumes = "application/json")
-    public Book updateBook(@RequestBody Map<String, String> updates,
-                           @PathVariable Long bookId) {
+    public Book update(@RequestBody Map<String, String> updates,
+                       @PathVariable Long bookId) {
         return bookService.update(updates, bookId);
     }
+
+    @RequestMapping(method = DELETE, value = "{bookId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long bookId) {
+        bookService.deleteById(bookId);
+    }
+
 }
