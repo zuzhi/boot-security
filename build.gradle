@@ -34,4 +34,5 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 	runtime('com.h2database:h2')
+	compile group: 'com.google.guava', name: 'guava', version: '24.1-jre'
 }

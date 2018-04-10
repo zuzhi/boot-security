@@ -10,10 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
+import java.util.Map;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
  * Controller that handles requests for the books endpoint at /books
@@ -67,13 +66,15 @@ public class BooksController {
         return new ResponseEntity<>(book, headers, HttpStatus.CREATED);
     }
 
-    // HELPER METHOD
+    @RequestMapping(method = PUT, value = "/{bookId}", consumes = "application/json")
+    public Book update(@RequestBody Book book,
+                           @PathVariable Long bookId) {
+        return bookService.update(book, bookId);
+    }
 
-    /// Customize error response body
-//    @ExceptionHandler(BookNotFoundException.class)
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public Error bookNotFound(BookNotFoundException e) {
-//        long bookId = e.getBookId();
-//        return new Error(4, "Book [" + bookId + "] not found");
-//    }
+    @RequestMapping(method = PATCH, value = "/{bookId}", consumes = "application/json")
+    public Book updateBook(@RequestBody Map<String, String> updates,
+                           @PathVariable Long bookId) {
+        return bookService.update(updates, bookId);
+    }
 }
