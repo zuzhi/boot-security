@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -38,6 +41,13 @@ public class BooksController {
 
     @RequestMapping(method = GET, value = "/{bookId}")
     public Book findById(@PathVariable Long bookId) {
+        /// Use Method reference to throw new BookNotFoundException, but only works without arguments
+        // return bookService.findById(bookId).orElseThrow(BookNotFoundException::new);
+
+        ///
+        // return bookService.findById(bookId).orElseThrow(() -> new BookNotFoundException(bookId));
+
+
         return bookService.findById(bookId).orElseThrow(
                 () -> new BookNotFoundException("Book [" + bookId + "] not found"));
     }
@@ -47,8 +57,23 @@ public class BooksController {
                                          UriComponentsBuilder ucb) {
         bookService.save(book);
 
-        UriComponents uriComponents = ucb.path("/books/{id}").buildAndExpand(book.getId());
+        HttpHeaders headers = new HttpHeaders();
+        URI locationUri = ucb.path("/books/")
+                .path(String.valueOf(book.getId()))
+                .build()
+                .toUri();
+        headers.setLocation(locationUri);
 
-        return ResponseEntity.created(uriComponents.toUri()).body(book);
+        return new ResponseEntity<>(book, headers, HttpStatus.CREATED);
     }
+
+    // HELPER METHOD
+
+    /// Customize error response body
+//    @ExceptionHandler(BookNotFoundException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    public Error bookNotFound(BookNotFoundException e) {
+//        long bookId = e.getBookId();
+//        return new Error(4, "Book [" + bookId + "] not found");
+//    }
 }

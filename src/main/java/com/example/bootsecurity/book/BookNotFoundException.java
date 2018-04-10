@@ -10,7 +10,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 class BookNotFoundException extends RuntimeException {
 
+    private Long bookId;
+
     BookNotFoundException(String message) {
         super(message);
+    }
+
+    Long getBookId() {
+        return bookId;
     }
 }
