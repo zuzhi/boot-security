@@ -30,14 +30,14 @@ public class BooksController {
         this.bookService = bookService;
     }
 
-    @RequestMapping(method = GET)
+    @RequestMapping(method = GET, produces = "application/json")
     public Page<Book> findAll(@RequestParam(defaultValue = "1") int page,
                               @RequestParam(defaultValue = "10") int size) {
         Pageable pageRequest = PageRequest.of(page - 1, size);
         return bookService.findAll(pageRequest);
     }
 
-    @RequestMapping(method = GET, value = "/{bookId}")
+    @RequestMapping(method = GET, value = "/{bookId}", produces = "application/json")
     public Book findById(@PathVariable Long bookId) {
         return bookService.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException("Book [" + bookId + "] not found"));
