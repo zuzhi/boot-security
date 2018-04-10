@@ -42,14 +42,14 @@ public class BookService {
 
     Book update(Book book, Long bookId) {
         Preconditions.checkNotNull(book);
-        // TODO NPE if bookId does not supplied
+        // TODO NPE if bookId does not supplied, so RequestBody should be validated
         Preconditions.checkState(book.getId().equals(bookId));
         Preconditions.checkNotNull(bookRepository.findById(bookId));
         return bookRepository.save(book);
     }
 
     Book update(Map<String, String> updates, Long bookId) {
-        final Book book = findById(bookId)
+        final Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException("Book [" + bookId + "] not found"));
 
         updates.keySet()
