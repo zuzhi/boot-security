@@ -1,14 +1,14 @@
 package com.example.bootsecurity.book;
 
-import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * @author zuzhi
@@ -24,16 +24,13 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    List<Book> findAll() {
-        return bookRepository.findAll();
-    }
-
     Page<Book> findAll(Pageable pageRequest) {
         return bookRepository.findAll(pageRequest);
     }
 
-    Optional<Book> findById(Long bookId) {
-        return bookRepository.findById(bookId);
+    Book findById(Long bookId) {
+        return bookRepository.findById(bookId)
+                .orElseThrow(() -> new BookNotFoundException("Book [" + bookId + "] not found"));
     }
 
     void save(Book book) {
@@ -41,16 +38,16 @@ public class BookService {
     }
 
     Book update(Book book, Long bookId) {
-        Preconditions.checkNotNull(book);
-        // TODO NPE if bookId does not supplied
-        Preconditions.checkState(book.getId().equals(bookId));
-        Preconditions.checkNotNull(bookRepository.findById(bookId));
+        checkNotNull(book.getId(), "Book id is required in request body");
+        checkState(book.getId().equals(bookId),
+                "Book id in request body [%s] does not equals to the one in path [%s]",
+                bookId, book.getId());
+        checkNotNull(bookRepository.findById(bookId));
         return bookRepository.save(book);
     }
 
     Book update(Map<String, String> updates, Long bookId) {
-        final Book book = findById(bookId)
-                .orElseThrow(() -> new BookNotFoundException("Book [" + bookId + "] not found"));
+        final Book book = findById(bookId);
 
         updates.keySet()
                 .forEach(key -> {
@@ -66,5 +63,10 @@ public class BookService {
                     }
                 });
         return bookRepository.save(book);
+    }
+
+    void deleteById(Long bookId) {
+        checkNotNull(findById(bookId));
+        bookRepository.deleteById(bookId);
     }
 }
