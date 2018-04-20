@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic()
                 .and()
             .authorizeRequests()
+                // actuator
+                .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 // books
                 .antMatchers(HttpMethod.GET, "/books").permitAll()
                 .antMatchers(HttpMethod.GET, "/books/*").permitAll()
