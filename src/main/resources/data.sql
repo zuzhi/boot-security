@@ -1,2 +1,2 @@
--- books
-insert into book (id, title, author) values (1, 'Spring In Action', 'Craig Walls');
+-- books, first record is needed for DatabaseInitializeTests, do not delete.
+INSERT INTO book (title, author) VALUES ('Hackers and Painters', 'Paul Graham');

@@ -25,19 +25,19 @@ public class BookRepositoryTests {
     @Autowired
     private TestEntityManager testEntityManager;
 
-    private Book bookSpringInAction = new Book("Spring in Action", "Craig Walls");
+    private Book bookCode = new Book("Code", "Charles Petzold");
     private Book bookRefactoring = new Book("Refactoring", "Martin Fowler");
 
     @Before
     public void setUp() {
-        testEntityManager.persist(bookSpringInAction);
+        testEntityManager.persist(bookCode);
         testEntityManager.persist(bookRefactoring);
     }
 
     @Test
     public void testFindByTitle() {
-        List<Book> booksWithTitleSpringInAction = bookRepository.findByTitle("Spring in Action");
-        assertThat(booksWithTitleSpringInAction, contains(bookSpringInAction));
+        List<Book> booksWithTitleCode = bookRepository.findByTitle("Code");
+        assertThat(booksWithTitleCode, contains(bookCode));
     }
 
     @Test
