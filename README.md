@@ -1,5 +1,8 @@
 # Core Spring
 
+[![Build Status](https://travis-ci.org/zuzhi/core-spring.svg?branch=master)](https://travis-ci.org/zuzhi/core-spring)
+[![License](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/zuzhi/core-spring/blob/master/LICENSE)
+
 This project is an example project showing how to build a Spring Boot App with Spring related projects, such as Spring Boot, Spring Security, Spring Data JPA...
 
 ## Getting Started
@@ -17,7 +20,7 @@ $ gradle bootRun
 
 ### Endpoints
 
-#### Hello, World 
+#### Hello, World
 
 * `/`: Go to http://localhost:8080/, use `user` as username, `pass` as password, see `SecurityConfig.java`
 
