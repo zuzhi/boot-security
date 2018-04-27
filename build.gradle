@@ -30,11 +30,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('com.google.guava:guava:24.1-jre')
-    compileOnly("org.springframework.boot:spring-boot-configuration-processor")
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
 }
-
-compileJava.dependsOn(processResources)

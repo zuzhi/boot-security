@@ -1,2 +1,2 @@
 -- books
-insert into book (id, title, author) values (1, 'Spring In Action', 'Craig Walls');
+INSERT INTO book (title, author) VALUES ('Spring in Action', 'Craig Walls');

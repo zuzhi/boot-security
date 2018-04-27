@@ -10,3 +10,8 @@ info:
     description: ${project.description}
   spring:
     profiles: ${spring.profiles.active:default}
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
