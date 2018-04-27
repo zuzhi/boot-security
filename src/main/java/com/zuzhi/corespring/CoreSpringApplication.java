@@ -1,4 +1,4 @@
-package com.example.corespring;
+package com.zuzhi.corespring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

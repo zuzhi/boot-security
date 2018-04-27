@@ -1,7 +1,7 @@
-package com.example.corespring;
+package com.zuzhi.corespring;
 
-import com.example.corespring.book.Book;
-import com.example.corespring.book.BookRepository;
+import com.zuzhi.corespring.book.Book;
+import com.zuzhi.corespring.book.BookRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

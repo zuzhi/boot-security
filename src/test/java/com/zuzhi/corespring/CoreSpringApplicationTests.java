@@ -1,4 +1,4 @@
-package com.example.corespring;
+package com.zuzhi.corespring;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

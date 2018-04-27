@@ -1,4 +1,4 @@
-package com.example.corespring.util;
+package com.zuzhi.corespring.util;
 
 /**
  * Util class for exploring some techniques

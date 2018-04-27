@@ -1,4 +1,4 @@
-package com.example.corespring;
+package com.zuzhi.corespring;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

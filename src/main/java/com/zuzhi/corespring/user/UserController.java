@@ -1,4 +1,4 @@
-package com.example.corespring.user;
+package com.zuzhi.corespring.user;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
