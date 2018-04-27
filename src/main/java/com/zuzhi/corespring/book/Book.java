@@ -1,4 +1,4 @@
-package com.example.corespring.book;
+package com.zuzhi.corespring.book;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
