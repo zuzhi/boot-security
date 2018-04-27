@@ -40,14 +40,15 @@ public class BookService {
     Book update(Book book, Long bookId) {
         checkNotNull(book.getId(), "Book id is required in request body");
         checkState(book.getId().equals(bookId),
-                "Book id in request body [%s] does not equals to the one in path [%s]",
+                "Book id in request body [%s] does not match the one in path [%s]",
                 bookId, book.getId());
         checkNotNull(bookRepository.findById(bookId));
         return bookRepository.save(book);
     }
 
     Book update(Map<String, String> updates, Long bookId) {
-        final Book book = findById(bookId);
+        final Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new BookNotFoundException("Book [" + bookId + "] not found"));
 
         updates.keySet()
                 .forEach(key -> {
