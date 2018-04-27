@@ -1,4 +1,4 @@
-package com.example.bootsecurity;
+package com.example.corespring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 29/03/2018
  */
 @SpringBootApplication
-public class DemoApplication {
+public class CoreSpringApplication {
     
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(CoreSpringApplication.class, args);
     }
 }

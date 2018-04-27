@@ -1,4 +1,4 @@
-package com.example.bootsecurity.user;
+package com.example.corespring.user;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;

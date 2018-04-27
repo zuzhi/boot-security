@@ -1,4 +1,4 @@
-package com.example.bootsecurity.util;
+package com.example.corespring.util;
 
 /**
  * Util class for exploring some techniques

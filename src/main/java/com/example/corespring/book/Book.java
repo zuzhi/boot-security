@@ -1,4 +1,4 @@
-package com.example.bootsecurity.book;
+package com.example.corespring.book;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

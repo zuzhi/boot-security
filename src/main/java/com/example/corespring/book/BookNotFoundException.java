@@ -1,4 +1,4 @@
-package com.example.bootsecurity.book;
+package com.example.corespring.book;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

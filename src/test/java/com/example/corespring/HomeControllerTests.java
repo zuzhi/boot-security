@@ -1,4 +1,4 @@
-package com.example.bootsecurity;
+package com.example.corespring;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

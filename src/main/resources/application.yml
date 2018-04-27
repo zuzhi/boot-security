@@ -1,7 +1,7 @@
 project:
-  artifactId: boot-security
-  name: boot-security
-  description: boot-security
+  artifactId: core-spring
+  name: core-spring
+  description: core-spring
 
 info:
   build:

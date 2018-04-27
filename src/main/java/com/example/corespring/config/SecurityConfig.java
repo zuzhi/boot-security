@@ -1,4 +1,4 @@
-package com.example.bootsecurity.config;
+package com.example.corespring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
