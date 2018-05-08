@@ -1,6 +1,7 @@
 # Core Spring
 
 [![Build Status](https://travis-ci.org/zuzhi/core-spring.svg?branch=master)](https://travis-ci.org/zuzhi/core-spring)
+[![CircleCI](https://circleci.com/gh/zuzhi/core-spring.svg?style=svg)](https://circleci.com/gh/zuzhi/core-spring)
 [![License](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/zuzhi/core-spring/blob/master/LICENSE)
 
 This project is an example project showing how to build a Spring Boot App with Spring related projects, such as Spring Boot, Spring Security, Spring Data JPA...
@@ -22,7 +23,7 @@ $ gradle bootRun
 
 #### Hello, World
 
-* `/`: Go to http://localhost:8080/, use `user` as username, `pass` as password, see `SecurityConfig.java`
+* `/`: Use `user` as username, `pass` as password, see `SecurityConfig.java`
 
 #### Actuator
 
@@ -50,4 +51,8 @@ $ gradle bootRun
 
 ## Deploy
 
-[Deploying Gradle Apps on Heroku](https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku)
+* https://zuzhi-core-spring.herokuapp.com
+
+## Links
+
+* Deploying Gradle Apps on Heroku: https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku
