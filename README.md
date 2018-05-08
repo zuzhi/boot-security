@@ -7,7 +7,7 @@ This project is an example project showing how to build a Spring Boot App with S
 
 ## Getting Started
 
-### Run the app
+### Running the app
 
 ```bash
 # Clone the project

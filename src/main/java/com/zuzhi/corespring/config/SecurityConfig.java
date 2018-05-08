@@ -36,11 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // actuator
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 // books
-                .antMatchers(HttpMethod.GET, "/books").permitAll()
-                .antMatchers(HttpMethod.GET, "/books/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/books").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PATCH, "/books/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/books/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/v1/books").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/books/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/books").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/api/v1/books/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/v1/books/*").hasRole("ADMIN")
                 // ratings
                 .regexMatchers("^/ratings\\?bookId.*$").authenticated()
                 .antMatchers(HttpMethod.POST, "/ratings").authenticated()

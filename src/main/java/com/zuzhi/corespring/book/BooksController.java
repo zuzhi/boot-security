@@ -21,7 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  * @date 04/04/2018
  */
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/v1/books")
 public class BooksController {
 
     private BookService bookService;
