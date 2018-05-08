@@ -36,6 +36,8 @@ $ gradle bootRun
 
 #### APIs
 
+`/api/v1`
+
 * `/books`
     * `GET`: get all books
     * `POST`: create a new book
@@ -44,3 +46,8 @@ $ gradle bootRun
     * `PUT`: update a book by id, id is needed in both request body and request path
     * `PATCH`: update a book by id, id is not needed in request body
     * `DELETE`: delete a book by id
+
+
+## Deploy
+
+[Deploying Gradle Apps on Heroku](https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku)

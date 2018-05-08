@@ -35,3 +35,18 @@ dependencies {
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
 }
+
+task stage(type: Copy, dependsOn: ['build', 'clean']) {
+    from jar.archivePath
+    into project.rootDir
+    rename {
+        'app.jar'
+    }
+}
+build.mustRunAfter clean
+
+clean {
+    doLast {
+        project.file('app.jar').delete()
+    }
+}
