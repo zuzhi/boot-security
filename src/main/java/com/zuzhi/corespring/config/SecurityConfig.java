@@ -1,12 +1,19 @@
 package com.zuzhi.corespring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * SecurityConfig
@@ -17,6 +24,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private static final String ALL = "*";
+
+    private static final List<String> WILDCARD_PERMIT_ALL =
+            Collections.unmodifiableList(Collections.singletonList(ALL));
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -32,7 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http.httpBasic()
                 .and()
-            .authorizeRequests()
+                .cors()
+                .and()
+                .authorizeRequests()
                 // actuator
                 .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 // books
@@ -47,11 +61,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PATCH, "/ratings/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/ratings/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/ratings").hasRole("ADMIN")
-            .anyRequest()
+                .anyRequest()
                 .authenticated()
                 .and()
-            .csrf()
+                .csrf()
                 .disable();
         // @formatter:on
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(WILDCARD_PERMIT_ALL);
+        configuration.setAllowedMethods(WILDCARD_PERMIT_ALL);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/api/**", configuration);
+        return source;
     }
 }
