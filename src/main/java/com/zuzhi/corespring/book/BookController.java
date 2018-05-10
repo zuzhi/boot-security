@@ -24,12 +24,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  */
 @RestController
 @RequestMapping("/api/v1/books")
-public class BooksController {
+public class BookController {
 
     private BookService bookService;
 
     @Autowired
-    public BooksController(BookService bookService) {
+    public BookController(BookService bookService) {
         this.bookService = bookService;
     }
 
@@ -48,26 +48,25 @@ public class BooksController {
     }
 
     @RequestMapping(value = "", method = POST,
-            consumes = "application/json")
+            consumes = "application/json", produces = "application/json")
     public ResponseEntity<Book> saveBook(@Valid @RequestBody Book book,
                                          UriComponentsBuilder ucb) {
         bookService.save(book);
 
-        UriComponents uriComponents =
-                ucb.path("/books/{id}").buildAndExpand(book.getId());
+        UriComponents uriComponents = ucb.path("/books/{id}").buildAndExpand(book.getId());
 
         return ResponseEntity.created(uriComponents.toUri()).body(book);
     }
 
     @RequestMapping(value = "/{bookId}", method = PUT,
-            consumes = "application/json")
+            consumes = "application/json", produces = "application/json")
     public Book update(@Validated(Book.Existing.class) @RequestBody Book book,
                        @PathVariable Long bookId) {
         return bookService.update(book, bookId);
     }
 
     @RequestMapping(value = "/{bookId}", method = PATCH,
-            consumes = "application/json")
+            consumes = "application/json", produces = "application/json")
     public Book update(@RequestBody Map<String, String> updates,
                        @PathVariable Long bookId) {
         return bookService.update(updates, bookId);

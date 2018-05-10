@@ -1,10 +1,13 @@
 package com.zuzhi.corespring.book;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -16,6 +19,8 @@ import static com.google.common.base.Preconditions.checkState;
  */
 @Service
 public class BookService {
+
+    private static final Log logger = LogFactory.getLog(BookService.class);
 
     private BookRepository bookRepository;
 
@@ -38,7 +43,8 @@ public class BookService {
     }
 
     Book update(Book book, Long bookId) {
-        checkNotNull(book.getId(), "Book id is required in request body");
+        /// book.getId() validation is handled by bean validation in entity class
+        // checkNotNull(book.getId(), "Book id is required in request body");
         checkState(book.getId().equals(bookId),
                 "Book id in request body [%s] does not match the one in path [%s]",
                 bookId, book.getId());
@@ -69,5 +75,9 @@ public class BookService {
     void deleteById(Long bookId) {
         checkNotNull(findById(bookId));
         bookRepository.deleteById(bookId);
+    }
+
+    List<Book> findByAuthor(String author) {
+        return bookRepository.findByAuthor(author);
     }
 }
