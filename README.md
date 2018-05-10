@@ -1,6 +1,5 @@
 # Core Spring
 
-[![Build Status](https://travis-ci.org/zuzhi/core-spring.svg?branch=master)](https://travis-ci.org/zuzhi/core-spring)
 [![CircleCI](https://circleci.com/gh/zuzhi/core-spring.svg?style=svg)](https://circleci.com/gh/zuzhi/core-spring)
 [![License](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/zuzhi/core-spring/blob/master/LICENSE)
 

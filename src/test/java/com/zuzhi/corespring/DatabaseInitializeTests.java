@@ -10,9 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -23,6 +21,8 @@ public class DatabaseInitializeTests {
 
     @Test
     public void testFindByTitle() {
+        bookRepository.save(new Book("Hackers and Painters", "Paul Graham"));
+
         List<Book> booksWithTitleSpringInAction = bookRepository.findByTitle("Hackers and Painters");
         assertEquals(booksWithTitleSpringInAction.size(), 1);
     }
