@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,9 +20,11 @@ public class Book {
     private Long id;
 
     @NotNull
+    @NotEmpty
     private String title;
 
     @NotNull
+    @NotEmpty
     private String author;
 
     public Book() {
