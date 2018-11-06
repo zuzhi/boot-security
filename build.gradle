@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.2.RELEASE'
+        springBootVersion = '2.1.0.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -29,8 +29,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile('com.google.guava:guava:25.0-jre')
-    compile('com.alibaba:fastjson:1.2.47')
+    compile('com.google.guava:guava:27.0-jre')
+    compile('com.alibaba:fastjson:1.2.51')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
     runtime('org.springframework.boot:spring-boot-devtools')
