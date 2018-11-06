@@ -1,0 +1,14 @@
+---
+resources:
+- name: core-spring-repo
+  type: git
+  source:
+    uri: "https://github.com/zuzhi/core-spring.git"
+
+jobs:
+- name: build-core-spring
+  plan:
+  - get: core-spring-repo
+    trigger: true
+  - task: build-core-spring
+    file: core-spring-repo/concourse/tasks/build-core-spring.yml
