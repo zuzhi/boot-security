@@ -11,4 +11,5 @@ inputs:
 - name: core-spring-repo
 
 run:
+  user: root
   path: core-spring-repo/concourse/tasks/build-core-spring.sh
