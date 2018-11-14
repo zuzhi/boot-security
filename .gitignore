@@ -27,3 +27,4 @@ nbdist/
 
 out/
 app.jar
+.DS_Store

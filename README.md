@@ -1,6 +1,7 @@
 # Core Spring
 
 [![CircleCI](https://circleci.com/gh/zuzhi/core-spring.svg?style=svg)](https://circleci.com/gh/zuzhi/core-spring)
+[![Concourse](https://ci.reemii.cn/api/v1/teams/core-spring/pipelines/core-spring/jobs/build-core-spring/badge)](https://ci.reemii.cn/teams/core-spring/pipelines/core-spring)
 [![License](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/zuzhi/core-spring/blob/master/LICENSE)
 
 This project is an example project showing how to build a Spring Boot App with Spring related projects, such as Spring Boot, Spring Security, Spring Data JPA...
@@ -55,3 +56,9 @@ $ gradle bootRun
 ## Links
 
 * Deploying Gradle Apps on Heroku: https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku
+
+## Roadmap
+
+- Web Admin Control Panel
+- Login / Remember Me
+- Persistent Login
