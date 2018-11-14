@@ -51,3 +51,18 @@ http(s)://concourse-server/api/v1/teams/<team-name>/pipelines/<pipeline-name>/jo
 # i.e.
 https://ci.reemii.cn/api/v1/teams/core-spring/pipelines/core-spring/jobs/build-core-spring/badge
 ```
+
+And private pipelines need to be exposed for the badges to be accessible by the public.
+
+```bash
+# 401
+$ curl -i https://ci.reemii.cn/api/v1/teams/core-spring/pipelines/core-spring/jobs/build-core-spring/badge
+> HTTP/1.1 401 Unauthorized
+
+# Expose pipeline
+$ fly --target reemii-ci expose-pipeline -p core-spring
+
+# 200
+$ curl -i https://ci.reemii.cn/api/v1/teams/core-spring/pipelines/core-spring/jobs/build-core-spring/badge
+> HTTP/1.1 200 OK
+```
