@@ -1,8 +1,8 @@
-## Continuous Integration with Concourse
+# Continuous Integration with Concourse
 
 ...
 
-### Core-spring pipelines
+## Core-spring pipelines
 
 ...
 
@@ -41,4 +41,13 @@ $ fly --target reemii-ci destroy-pipeline --pipeline=core-spring
 
 # 9. Back to 'core-spring' team
 $ fly --target reemii-ci login -n core-spring -b
+```
+
+### Concourse Badges
+
+```bash
+# URL format
+http(s)://concourse-server/api/v1/teams/<team-name>/pipelines/<pipeline-name>/jobs/<job-name>/badge
+# i.e.
+https://ci.reemii.cn/api/v1/teams/core-spring/pipelines/core-spring/jobs/build-core-spring/badge
 ```
