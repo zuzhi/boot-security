@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 29/03/2018
  */
 @SpringBootApplication
-public class CoreSpringApplication {
+public class Application {
     
     public static void main(String[] args) {
-        SpringApplication.run(CoreSpringApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
